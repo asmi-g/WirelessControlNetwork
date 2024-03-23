@@ -1,5 +1,7 @@
 # WirelessControlNetwork - IN PROGRESS
 
+#### Software Architecture
+![alt text](image.png)
 
 #### Resources
 

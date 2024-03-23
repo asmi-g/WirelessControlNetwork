@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <WiFiMulti.h>
 #include <WebSocketsClient.h>
+#include <ArduinoJson.h>
 
 #define WIFI_SSID "wifi_network_name"
 #define WIFI_PASSWORD "wifi_password"
@@ -11,6 +12,21 @@
 
 WiFiMulti wifiMulti;
 WebSocketsClient wsClient;
+
+void handleMessage(uint8_t * payload)
+{
+  JsonDocument doc;
+
+  // Deserialize the JSON document
+  DeserializationError error = deserializeJson(doc, payload);
+
+  // Test if parsing succeeds
+  if (error) {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+}
 
 void onWSEvent(WStype_t type, uint8_t * payload, size_t length){
   //handles events w/ switch case statement
@@ -23,6 +39,7 @@ void onWSEvent(WStype_t type, uint8_t * payload, size_t length){
       break;
     case WStype_TEXT:
       Serial.printf("WS Message: %s\n", payload);
+      handleMessage(payload);
       break;
   }
 }
