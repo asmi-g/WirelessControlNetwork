@@ -1,4 +1,4 @@
-# WirelessControlNetwork - IN PROGRESS
+# Wireless Control Network - IN PROGRESS
 
 #### Description
 * Developed an ESP32 WebSocket client in C/C++ using PlatformIO, leveraging the ESP32 WiFi connection, adding WebSocket client functionality, and handling WebSocket events in order to facilitate real-time GPIO pin control with the ESP32
